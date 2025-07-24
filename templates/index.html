@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Email Sender App</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      
+      body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .container {
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 600px;
+        width: 90%;
+      }
+      
+      .logo {
+        font-size: 4rem;
+        margin-bottom: 20px;
+      }
+      
+      h1 {
+        color: #333;
+        margin-bottom: 20px;
+        font-size: 2.5rem;
+        font-weight: 300;
+      }
+      
+      .subtitle {
+        color: #666;
+        margin-bottom: 40px;
+        font-size: 1.2rem;
+        line-height: 1.6;
+      }
+      
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin: 40px 0;
+      }
+      
+      .feature {
+        padding: 20px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        transition: transform 0.3s ease;
+      }
+      
+      .feature:hover {
+        transform: translateY(-5px);
+      }
+      
+      .feature-icon {
+        font-size: 2.5rem;
+        margin-bottom: 15px;
+      }
+      
+      .feature h3 {
+        color: #333;
+        margin-bottom: 10px;
+        font-size: 1.3rem;
+      }
+      
+      .feature p {
+        color: #666;
+        font-size: 0.9rem;
+      }
+      
+      .cta-button {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 15px 40px;
+        text-decoration: none;
+        border-radius: 50px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      }
+      
+      .cta-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      }
+      
+      .footer {
+        margin-top: 40px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+        color: #888;
+        font-size: 0.9rem;
+      }
+      
+      @media (max-width: 768px) {
+        .container {
+          padding: 30px 20px;
+        }
+      
+        h1 {
+          font-size: 2rem;
+        }
+      
+        .features {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="logo">📧</div>
+      <h1>Email Sender Pro</h1>
+      <p class="subtitle">Send professional bulk emails with beautiful templates and personalization features. Perfect for marketing campaigns, newsletters, and business communications.</p>
+
+      <div class="features">
+        <div class="feature">
+          <div class="feature-icon">🎯</div>
+          <h3>Bulk Sending</h3>
+          <p>Send emails to multiple recipients at once with smart list processing</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">🎨</div>
+          <h3>HTML Templates</h3>
+          <p>Beautiful pre-built templates including professional invoice designs</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">👤</div>
+          <h3>Personalization</h3>
+          <p>Customize emails with recipient names and dynamic content</p>
+        </div>
+
+        <div class="feature">
+          <div class="feature-icon">📊</div>
+          <h3>Send Reports</h3>
+          <p>Track successful sends and get detailed delivery reports</p>
+        </div>
+      </div>
+
+      <a href="{% url 'send_bulk_email' %}" class="cta-button">🚀 Start Sending Emails</a>
+
+      <div class="footer">
+        <p>Built with Django | Class Project 2024</p>
+      </div>
+    </div>
+  </body>
+</html>
