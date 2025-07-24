@@ -15,19 +15,19 @@ import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
 
-import os
+
 import ssl
 import smtplib
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
-from dotenv import load_dotenv
 
 
+import os
 import re
 
 from django.shortcuts import redirect
 from urllib.parse import urlencode
-load_dotenv()
+
 
 
 def home(request):
