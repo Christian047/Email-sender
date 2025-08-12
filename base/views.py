@@ -331,12 +331,23 @@ def get_invoice_template(request):
             font-size: 12px;
             margin-bottom: 10px;
         }
+        
+        a{
+            color: white;}
+            
+        a:hover {
+    text-decoration: underline; /* or change color */
+    color: #ddd; /* slightly lighter white */
+}
+            
+            
+        }
     </style>
 </head>
 <body>
     <div class="email-container">
         <div class="header">
-            <h1>Invoice Due for Payment</h1>
+            <h1>Invoice Due2 for Payment</h1>
         </div>
         
         <div class="content">

